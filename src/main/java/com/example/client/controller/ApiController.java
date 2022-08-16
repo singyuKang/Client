@@ -1,0 +1,30 @@
+package com.example.client.controller;
+
+
+import com.example.client.service.RestTemplateService;
+import dto.Req;
+import dto.UserResponse;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+
+@RestController
+@RequestMapping("/api/client")
+public class ApiController {
+
+    private final RestTemplateService restTemplateService;
+
+    public ApiController(RestTemplateService restTemplateService) {
+        this.restTemplateService = restTemplateService;
+    }
+
+    @GetMapping("/hello")
+    public Req<UserResponse> getHello(){
+        return restTemplateService.genericExchange();
+//        return new UserResponse();
+
+    }
+
+}
